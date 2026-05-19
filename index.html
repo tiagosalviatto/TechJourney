@@ -65,14 +65,16 @@
     position: relative;
     z-index: 1;
   }
+   .nav-logo {
+   font-family: 'Roboto', sans-serif;
+   font-size: 1.1rem;
+   font-weight: 900;
+   letter-spacing: 0.08em;
+   color: var(--white);
+   text-transform: uppercase;
+    }
 
   /* ─── HEADER (brand) ─── */
-  .hero-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-left: -32px; 
-  }
   .hero-brand {
     display: inline-flex;
     align-items: center;
@@ -122,7 +124,6 @@
   }
 
   @media (max-width: 900px) {
-    .hero-header { justify-content: center; margin-bottom: 32px; }
     .hero-brand-img { height: 72px; }
     .hero-lockup { margin: 16px auto 0; justify-content: center; gap: 18px; }
     .hero-logo { max-width: 240px; }
@@ -840,11 +841,9 @@
 <!-- ══ HERO ══ -->
 <div class="hero">
   <div class="hero-inner">
-    <header class="hero-header">
-      <a href="#" class="hero-brand" aria-label="Tech Journey">
-        <img src="assets/logo_square.png" alt="Tech Journey" class="hero-logo">
-      </a>
-    </header>
+
+<!-- ══ cabecario══ -->
+    <div class="nav-logo" > Yandeh · Tech Journey </div>
 
     <div class="hero-body">
       <div>
