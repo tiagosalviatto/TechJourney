@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Journey — Programa de Desenvolvimento</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2b5e;
+    --navy-deep: #111d3f;
+    --blue-mid: #2563b8;
+    --blue-bright: #38a8e0;
+    --blue-light: #7ecfee;
+    --blue-pale: #e8f5fb;
+    --blue-pale2: #f0f8fd;
+    --white: #ffffff;
+    --gray-light: #f4f8fc;
+    --gray-text: #5a6a85;
+    --gray-mid: #8a9ab5;
+    --border: #d0e4f0;
+    --border-light: #e8f0f8;
+    --green: #22c55e;
+    --amber: #f59e0b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  /* ─── HERO / NAV ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, #1e3a6e 100%);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(56,168,224,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 20%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(37,99,184,0.25) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 60px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-wordmark {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.0;
+    margin-left: auto;
+  }
+  .hero-wordmark .wm-tech {
+    font-size: clamp(54px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.12em;
+  }
+  .hero-wordmark .wm-journey {
+    font-size: clamp(54px, 7vw, 96px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 900px) {
+    .hero-wordmark { align-items: center; margin: 16px auto 0; }
+  }
+
+  .hero-body {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(36px, 4.5vw, 54px);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 22px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--blue-light);
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--blue-bright);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #2a95cb; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.55); color: white; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.07);
+    padding: 28px 24px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-stat::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hero-stat:hover::after { opacity: 1; }
+
+  .stat-num {
+    font-family: 'Roboto', sans-serif;
+    font-size: 38px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num em { font-style: normal; color: var(--blue-light); }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 60px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(26px, 3vw, 38px);
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .section-title em { font-style: italic; color: var(--blue-mid); }
+
+  .section-lead {
+    font-size: 15px;
+    color: var(--gray-text);
+    line-height: 1.75;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  /* ─── MODALIDADES ─── */
+  .modalities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .modalities-grid .modal-card:nth-child(4),
+  .modalities-grid .modal-card:nth-child(5) {
+    grid-column: span 1;
+  }
+  .modalities-row2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .modal-card {
+    background: var(--gray-light);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s, border-color 0.25s, transform 0.2s;
+  }
+  .modal-card:hover {
+    box-shadow: 0 6px 28px rgba(37,99,184,0.1);
+    border-color: var(--blue-bright);
+    transform: translateY(-2px);
+  }
+  .modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-bright), var(--blue-mid));
+    border-radius: 14px 14px 0 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .modal-card:hover::before { opacity: 1; }
+
+  .modal-icon {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--blue-pale), var(--blue-pale2));
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .modal-icon svg { width: 18px; height: 18px; }
+
+  .modal-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .modal-card p {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .modal-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .modal-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--blue-pale);
+    color: var(--blue-mid);
+    border: 1px solid var(--border);
+  }
+
+  /* ─── ELEGIBILIDADE ─── */
+  .eligibility-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .eligibility-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .eligibility-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .elig-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--blue-pale);
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .elig-dot svg { width: 10px; height: 10px; stroke: var(--blue-mid); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  .approval-card {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+    border-radius: 16px;
+    padding: 32px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .approval-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(56,168,224,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .approval-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56,168,224,0.15);
+    border: 1px solid rgba(126,207,238,0.3);
+    color: var(--blue-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .approval-pill::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue-bright);
+    border-radius: 50%;
+  }
+
+  .approval-card h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .approval-card h3 a {
+    color: var(--blue-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(126,207,238,0.4);
+  }
+
+  .approval-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .approval-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .approval-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+  }
+  .apv-num {
+    width: 22px;
+    height: 22px;
+    background: rgba(56,168,224,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue-light);
+    flex-shrink: 0;
+  }
+
+  /* ─── PIPELINE / STEPS ─── */
+  .pipeline-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .pipeline-step {
+    position: relative;
+    padding: 0 12px 0 0;
+  }
+  .pipeline-step:last-child { padding-right: 0; }
+
+  .pipeline-step::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 28px;
+    width: 12px;
+    height: 2px;
+    background: var(--border);
+  }
+  .pipeline-step:last-child::after { display: none; }
+
+  .step-box {
+    background: var(--gray-light);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 20px;
+    height: 100%;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .step-box:hover {
+    border-color: var(--blue-bright);
+    box-shadow: 0 4px 20px rgba(37,99,184,0.08);
+  }
+
+  .step-num-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--blue-bright);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .step-box h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .step-box p {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    line-height: 1.6;
+  }
+
+  .step-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 12px;
+    background: var(--blue-pale);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 11.5px;
+    color: var(--blue-mid);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  .step-tip::before {
+    content: '💡';
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ─── CRITÉRIOS ─── */
+  .criteria-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+
+  .criteria-table thead th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    padding: 12px 20px;
+    background: var(--gray-light);
+    border-top: 1.5px solid var(--border);
+    border-bottom: 1.5px solid var(--border);
+  }
+  .criteria-table thead th:first-child { border-radius: 10px 0 0 0; }
+  .criteria-table thead th:last-child { border-radius: 0 10px 0 0; }
+
+  .criteria-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
+  .criteria-table tbody tr:hover {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+    box-shadow: 0 8px 24px rgba(17,29,63,0.18);
+    transform: translateY(-1px);
+  }
+  .criteria-table tbody tr:last-child { border-bottom: none; }
+
+  .criteria-table td {
+    padding: 16px 20px;
+    font-size: 13.5px;
+    vertical-align: middle;
+    color: var(--navy);
+    transition: color 0.25s ease;
+  }
+  .criteria-table td:first-child { font-weight: 600; }
+  .criteria-table td:last-child { color: var(--gray-text); }
+
+  .criteria-table tbody tr:hover td,
+  .criteria-table tbody tr:hover td:first-child,
+  .criteria-table tbody tr:hover td:last-child {
+    color: #ffffff;
+  }
+
+  .criteria-table td .req-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--gray-text);
+    transition: color 0.25s ease;
+  }
+  .criteria-table td .req-badge .req-dot {
+    width: 7px; height: 7px;
+    background: var(--blue-bright);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .criteria-table tbody tr:hover .req-badge { color: rgba(255,255,255,0.92); }
+  .criteria-table tbody tr:hover .req-badge .req-dot {
+    background: var(--blue-light);
+    box-shadow: 0 0 0 4px rgba(126,207,238,0.25);
+  }
+
+  .criteria-note {
+    font-size: 12px;
+    color: var(--gray-mid);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* ─── COMPROMISSOS ─── */
+  .commitments-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .commitment-block {
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .commitment-header {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .commitment-header.yandeh {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+  }
+  .commitment-header.colaborador {
+    background: linear-gradient(135deg, #1e4d8c, var(--blue-mid));
+  }
+
+  .commitment-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .commitment-icon svg { width: 18px; height: 18px; fill: white; }
+
+  .commitment-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+  .commitment-header p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  .commitment-list {
+    list-style: none;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--gray-light);
+  }
+  .commitment-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  .check-icon {
+    width: 18px; height: 18px;
+    background: var(--blue-pale);
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .check-icon svg { width: 9px; height: 9px; stroke: var(--blue-mid); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ─── FAQ ─── */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: var(--gray-light);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--blue-bright); }
+
+  .faq-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .faq-item p {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.65;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer-section {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+    padding: 56px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-section::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(56,168,224,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .logo-text .tech { color: rgba(255,255,255,0.55); font-size: 18px; }
+  .footer-brand .logo-text .journey { color: white; font-size: 22px; }
+  .footer-brand p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin-top: 14px;
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    cursor: default;
+    transition: color 0.2s;
+  }
+  .footer-col ul li:hover { color: rgba(255,255,255,0.9); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-bottom p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-badge-v2 {
+    background: rgba(56,168,224,0.15);
+    border: 1px solid rgba(126,207,238,0.25);
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 40px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-body">
+      <div>
+        <div class="hero-label">Programa de Desenvolvimento</div>
+        <h1 class="hero-title">Crescer com estrutura,<br>propósito e <em>apoio real.</em></h1>
+        <p class="hero-desc">A Tech Journey é o programa da Yandeh para colaboradores que querem evoluir — técnica ou comportamentalmente — com custeio parcial ou total da empresa, aprovação por liderança e P&C, e impacto direto na carreira.</p>
+        <div class="hero-cta">
+          <a href="#pipeline" class="btn-primary">Como participar →</a>
+          <a href="#criterios" class="btn-outline">Ver critérios</a>
+        </div>
+      </div>
+
+      <div class="hero-wordmark" aria-label="Tech Journey">
+        <span class="wm-tech">tech</span>
+        <span class="wm-journey">journey</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODALIDADES ══ -->
+<div class="section">
+  <div class="section-eyebrow">Modalidades</div>
+  <h2 class="section-title">Cinco caminhos para o <em>próximo nível</em></h2>
+  <p class="section-lead">Escolha o formato que melhor encaixa no seu momento, no seu squad e na tecnologia que você quer dominar. Cada modalidade tem seu próprio ritmo e objetivo.</p>
+
+  <div class="modalities-grid">
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a9 9 0 100 18A9 9 0 0012 3z"/><path d="M12 8v4l3 3"/>
+        </svg>
+      </div>
+      <h3>Plataformas de aprendizado</h3>
+      <p>Acesso a trilhas completas em plataformas como Alura, Coursera e Udemy — do back ao DevOps, do front à IA. Aprenda no seu ritmo, com curadoria de conteúdo alinhada ao seu plano de desenvolvimento.</p>
+      <div class="modal-examples">
+        <span class="modal-tag">Alura</span>
+        <span class="modal-tag">Coursera</span>
+        <span class="modal-tag">Udemy</span>
+        <span class="modal-tag">Pluralsight</span>
+        <span class="modal-tag">LinkedIn Learning</span>
+      </div>
+    </div>
+
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <h3>Cursos de curto período</h3>
+      <p>Bootcamps e cursos pontuais com duração até dez/26 para destravar uma stack ou tecnologia específica. Formato intensivo, resultado rápido — ideal para gaps técnicos bem definidos.</p>
+      <div class="modal-examples">
+        <span class="modal-tag">Bootcamps</span>
+        <span class="modal-tag">Imersões</span>
+        <span class="modal-tag">Cursos pontuais</span>
+        <span class="modal-tag">até dez/26</span>
+      </div>
+    </div>
+
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <h3>Eventos presenciais e online</h3>
+      <p>QCon, AWS Summit, The Developer's Conference, Google I/O Extended e outros encontros da comunidade tech. Networking real, tendências em primeira mão e conexão com o ecossistema.</p>
+      <div class="modal-examples">
+        <span class="modal-tag">QCon</span>
+        <span class="modal-tag">AWS Summit</span>
+        <span class="modal-tag">TDC</span>
+        <span class="modal-tag">Google I/O</span>
+        <span class="modal-tag">Meetups</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modalities-row2">
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          <polyline points="9 11 7 22 12 19 17 22 15 11"/>
+        </svg>
+      </div>
+      <h3>Certificações</h3>
+      <p>AWS, GCP, Azure, Kubernetes (CKA/CKAD), Scrum, HashiCorp e demais certificações reconhecidas no mercado. Invista na credencial que comprova o que você já sabe — e abre o que vem a seguir.</p>
+      <div class="modal-examples">
+        <span class="modal-tag">AWS</span>
+        <span class="modal-tag">GCP</span>
+        <span class="modal-tag">Azure</span>
+        <span class="modal-tag">Kubernetes CKA</span>
+        <span class="modal-tag">HashiCorp</span>
+        <span class="modal-tag">Scrum</span>
+      </div>
+    </div>
+
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <h3>Outras formas de desenvolvimento</h3>
+      <p>Mentorias, workshops internos, comunidades técnicas e formatos não-tradicionais alinhados ao seu plano. Se o formato importa para o seu crescimento e tem aderência à carreira, vale conversar.</p>
+      <div class="modal-examples">
+        <span class="modal-tag">Mentorias</span>
+        <span class="modal-tag">Workshops</span>
+        <span class="modal-tag">Comunidades</span>
+        <span class="modal-tag">Formato livre</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ELEGIBILIDADE ══ -->
+<div class="section" style="background:var(--gray-light);">
+  <div class="section-eyebrow">Elegibilidade</div>
+  <h2 class="section-title">Quem pode <em>participar?</em></h2>
+  <p class="section-lead">Colaboradores com interesse genuíno em desenvolvimento técnico ou de soft skills, alinhamento com a liderança e perfil aderente aos critérios abaixo.</p>
+
+  <div class="eligibility-layout">
+    <div>
+      <ul class="eligibility-list">
+        <li>
+          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          <div>
+            <strong>Desenvolvedores, engenheiros, SREs, dados, produto técnico e afins</strong>
+            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">O programa é pensado para perfis com atuação técnica ou de produto.</div>
+          </div>
+        </li>
+        <li>
+          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          <div>
+            <strong>Foco em hard ou soft skills relevantes para a função</strong>
+            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">O conteúdo deve ter aderência clara à área de atuação e ao plano de carreira.</div>
+          </div>
+        </li>
+        <li>
+          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          <div>
+            <strong>Alinhamento prévio com liderança direta</strong>
+            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">A candidatura nasce de uma conversa real entre você e seu gestor — não de um formulário isolado.</div>
+          </div>
+        </li>
+        <li>
+          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          <div>
+            <strong>Posicionamento 9-box: Pleno ou superior</strong>
+            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">Avaliações de performance e potencial são consideradas no processo.</div>
+          </div>
+        </li>
+        <li>
+          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          <div>
+            <strong>Mínimo de 1 ciclo de AVD na Yandeh</strong>
+            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">É necessário ter passado por pelo menos uma avaliação de desempenho completa.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="approval-card">
+      <span class="approval-pill">Aprovação</span>
+      <h3>Toda candidatura passa por avaliação da <a href="#">Diretoria</a> e da área de <a href="#">Pessoas &amp; Cultura.</a></h3>
+      <p>Avaliamos contexto, momento de carreira e impacto esperado antes de liberar a participação. Não é burocracia — é garantia de que o investimento vai gerar resultado real.</p>
+      <div class="approval-steps">
+        <div class="approval-step">
+          <span class="apv-num">1</span>
+          Liderança direta valida a candidatura
+        </div>
+        <div class="approval-step">
+          <span class="apv-num">2</span>
+          P&C analisa perfil e aderência do conteúdo
+        </div>
+        <div class="approval-step">
+          <span class="apv-num">3</span>
+          Diretoria aprova e libera o custeio
+        </div>
+        <div class="approval-step">
+          <span class="apv-num">4</span>
+          Colaborador recebe confirmação e acesso
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PIPELINE ══ -->
+<div class="section" id="pipeline">
+  <div class="section-eyebrow">Pipeline</div>
+  <h2 class="section-title">Como participar em <em>4 passos</em></h2>
+  <p class="section-lead">O processo é simples e começa com uma conversa com a sua liderança. Do interesse à aprovação, o caminho tem clareza em cada etapa.</p>
+
+  <div class="pipeline-steps">
+    <div class="pipeline-step">
+      <div class="step-box">
+        <span class="step-num-badge">01</span>
+        <h4>Escolha a modalidade e o conteúdo</h4>
+        <p>Mapeie a skill ou stack que quer evoluir e selecione o formato ideal — plataforma, curso, evento ou certificação.</p>
+        <div class="step-tip">Pense no que trará impacto direto no seu trabalho hoje e no próximo semestre.</div>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-box">
+        <span class="step-num-badge">02</span>
+        <h4>Alinhe com sua liderança direta</h4>
+        <p>Garanta que o desenvolvimento escolhido conversa com os objetivos do time e do squad antes de avançar.</p>
+        <div class="step-tip">Esse alinhamento é parte do critério — não é formalidade, é parceria.</div>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-box">
+        <span class="step-num-badge">03</span>
+        <h4>Demonstre interesse no formulário</h4>
+        <p>Faça o 'commit' da sua candidatura preenchendo o formulário oficial com o conteúdo escolhido e justificativa.</p>
+        <div class="step-tip">Seja específico sobre o impacto esperado para o seu time e carreira.</div>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-box">
+        <span class="step-num-badge">04</span>
+        <h4>Formalize e aguarde aprovação</h4>
+        <p>Avaliação por Diretoria e Pessoas &amp; Cultura antes do go-live. Você recebe retorno com prazo definido.</p>
+        <div class="step-tip">Candidaturas são avaliadas em até 10 dias úteis após o envio.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CRITÉRIOS ══ -->
+<div class="section" id="criterios" style="background:var(--gray-light);">
+  <div class="section-eyebrow">Critérios</div>
+  <h2 class="section-title">Critérios de <em>elegibilidade</em></h2>
+  <p class="section-lead">Cada candidatura é avaliada considerando o conjunto abaixo. Os itens são ponderados em conjunto — não há eliminação automática por um único critério.</p>
+
+  <table class="criteria-table">
+    <thead>
+      <tr>
+        <th style="width:40%">Critério</th>
+        <th style="width:35%">Requisito</th>
+        <th>Observação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Posicionamento 9-box</td>
+        <td><span class="req-badge"><span class="req-dot"></span>Pleno ou superior</span></td>
+        <td>Avaliado no último ciclo de AVD</td>
+      </tr>
+      <tr>
+        <td>Temática do curso</td>
+        <td><span class="req-badge"><span class="req-dot"></span>Aderente à área / carreira</span></td>
+        <td>Deve ter conexão clara com função ou plano de desenvolvimento</td>
+      </tr>
+      <tr>
+        <td>Tempo de casa</td>
+        <td><span class="req-badge"><span class="req-dot"></span>Mínimo 1 ciclo de AVD</span></td>
+        <td>Colaboradores recentes podem ser avaliados caso a caso</td>
+      </tr>
+      <tr>
+        <td>Permanência mínima pós-programa</td>
+        <td><span class="req-badge"><span class="req-dot"></span>Mínimo 1 ciclo de AVD</span></td>
+        <td>Compromisso de permanência após conclusão do curso</td>
+      </tr>
+      <tr>
+        <td>Histórico de participação na Tech Journey</td>
+        <td><span class="req-badge"><span class="req-dot"></span>Considerado na avaliação</span></td>
+        <td>Participações anteriores e aplicação do conhecimento são levadas em conta</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="criteria-note">* Itens marcados são requisitos mínimos. Casos específicos podem ser avaliados pela Diretoria e por Pessoas &amp; Cultura.</p>
+</div>
+
+<!-- ══ COMPROMISSOS ══ -->
+<div class="section">
+  <div class="section-eyebrow">Compromissos</div>
+  <h2 class="section-title">O que a Yandeh oferece —<br>e o que <em>esperamos de você</em></h2>
+  <p class="section-lead">A Tech Journey é uma parceria. A empresa investe no seu crescimento; você investe dedicação, aplicação e continuidade.</p>
+
+  <div class="commitments-grid">
+    <div class="commitment-block">
+      <div class="commitment-header yandeh">
+        <div class="commitment-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3>O que a Yandeh oferece</h3>
+          <p>Investimento real no seu desenvolvimento</p>
+        </div>
+      </div>
+      <ul class="commitment-list">
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Custeio parcial ou total do programa ou certificação escolhida
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Processo de aprovação estruturado com retorno em até 10 dias úteis
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Suporte de P&C para alinhar o desenvolvimento ao plano de carreira
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Reconhecimento interno da evolução e das certificações conquistadas
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Histórico de participação considerado positivamente em avaliações futuras
+        </li>
+      </ul>
+    </div>
+
+    <div class="commitment-block">
+      <div class="commitment-header colaborador">
+        <div class="commitment-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <h3>O que esperamos de você</h3>
+          <p>Comprometimento com o crescimento mútuo</p>
+        </div>
+      </div>
+      <ul class="commitment-list">
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Alinhar o conteúdo com a liderança antes de submeter a candidatura
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Concluir o programa ou curso aprovado dentro do prazo definido
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Permanecer na empresa por pelo menos 1 ciclo de AVD após conclusão
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Aplicar o conhecimento adquirido no trabalho e compartilhar com o time
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+          Reportar progresso e resultado ao gestor e a P&C ao longo do programa
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FAQ ══ -->
+<div class="section" style="background:var(--gray-light);">
+  <div class="section-eyebrow">Dúvidas frequentes</div>
+  <h2 class="section-title">Perguntas que <em>todo mundo faz</em></h2>
+  <p class="section-lead" style="margin-bottom:36px;">Respostas diretas para as questões mais comuns sobre a Tech Journey.</p>
+
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h4>Posso participar mais de uma vez?</h4>
+      <p>Sim, desde que o histórico de participações anteriores tenha sido positivo — aplicação do conteúdo, conclusão do programa e alinhamento com a liderança. Participações anteriores são consideradas no processo, não como bloqueio.</p>
+    </div>
+    <div class="faq-item">
+      <h4>O custeio é 100% sempre?</h4>
+      <p>Não necessariamente. O percentual de custeio varia de acordo com o tipo de curso, o valor e o contexto. Em muitos casos é total, mas pode ser parcial — isso é definido na aprovação pela Diretoria e P&C.</p>
+    </div>
+    <div class="faq-item">
+      <h4>E se eu não concluir o programa aprovado?</h4>
+      <p>A conclusão é parte do compromisso assumido na candidatura. Em casos de não conclusão sem justificativa, o histórico é considerado negativamente em avaliações futuras. Situações específicas podem ser avaliadas com P&C.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Cursos de soft skill também se aplicam?</h4>
+      <p>Sim. A Tech Journey não é só para desenvolvimento técnico — soft skills relevantes para a função e para o plano de carreira também são elegíveis, desde que haja aderência clara e alinhamento com a liderança.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Qual o prazo para resposta da candidatura?</h4>
+      <p>As candidaturas são avaliadas em até 10 dias úteis após envio completo do formulário. P&C entra em contato com o colaborador e o gestor independentemente do resultado.</p>
+    </div>
+    <div class="faq-item">
+      <h4>O que acontece se minha candidatura não for aprovada?</h4>
+      <p>P&C compartilha o motivo e, quando possível, sugere alternativas ou um momento mais adequado para nova candidatura. A recusa não impede futuras participações no programa.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
