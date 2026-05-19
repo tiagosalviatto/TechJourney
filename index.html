@@ -366,26 +366,47 @@
 
   /* ─── ELEGIBILIDADE ─── */
   .eligibility-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
 
   .eligibility-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 0;
   }
   .eligibility-list li {
+    grid-column: span 2;
     display: flex;
     align-items: flex-start;
     gap: 12px;
     font-size: 14px;
     color: var(--navy);
     line-height: 1.5;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .eligibility-list li:nth-child(4) { grid-column: 2 / span 2; }
+  .eligibility-list li:nth-child(5) { grid-column: 4 / span 2; }
+  .eligibility-list li:hover {
+    border-color: var(--blue-bright);
+    box-shadow: 0 4px 16px rgba(37,99,184,0.08);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 900px) {
+    .eligibility-list { grid-template-columns: repeat(2, 1fr); }
+    .eligibility-list li,
+    .eligibility-list li:nth-child(4),
+    .eligibility-list li:nth-child(5) { grid-column: auto; }
+  }
+  @media (max-width: 600px) {
+    .eligibility-list { grid-template-columns: 1fr; }
   }
   .elig-dot {
     width: 20px;
@@ -461,16 +482,28 @@
   }
 
   .approval-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 4px;
   }
   .approval-step {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
     font-size: 13px;
     color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+    line-height: 1.45;
+  }
+  @media (max-width: 900px) {
+    .approval-steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .approval-steps { grid-template-columns: 1fr; }
   }
   .apv-num {
     width: 22px;
@@ -970,45 +1003,43 @@
   <p class="section-lead">Colaboradores com interesse genuíno em desenvolvimento técnico ou de soft skills, alinhamento com a liderança e perfil aderente aos critérios abaixo.</p>
 
   <div class="eligibility-layout">
-    <div>
-      <ul class="eligibility-list">
-        <li>
-          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
-          <div>
-            <strong>Desenvolvedores, engenheiros, SREs, dados, produto técnico e afins</strong>
-            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">O programa é pensado para perfis com atuação técnica ou de produto.</div>
-          </div>
-        </li>
-        <li>
-          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
-          <div>
-            <strong>Foco em hard ou soft skills relevantes para a função</strong>
-            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">O conteúdo deve ter aderência clara à área de atuação e ao plano de carreira.</div>
-          </div>
-        </li>
-        <li>
-          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
-          <div>
-            <strong>Alinhamento prévio com liderança direta</strong>
-            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">A candidatura nasce de uma conversa real entre você e seu gestor — não de um formulário isolado.</div>
-          </div>
-        </li>
-        <li>
-          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
-          <div>
-            <strong>Posicionamento 9-box: Pleno ou superior</strong>
-            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">Avaliações de performance e potencial são consideradas no processo.</div>
-          </div>
-        </li>
-        <li>
-          <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
-          <div>
-            <strong>Mínimo de 1 ciclo de AVD na Yandeh</strong>
-            <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">É necessário ter passado por pelo menos uma avaliação de desempenho completa.</div>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <ul class="eligibility-list">
+      <li>
+        <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+        <div>
+          <strong>Desenvolvedores, engenheiros, SREs, dados, produto técnico e afins</strong>
+          <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">O programa é pensado para perfis com atuação técnica ou de produto.</div>
+        </div>
+      </li>
+      <li>
+        <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+        <div>
+          <strong>Foco em hard ou soft skills relevantes para a função</strong>
+          <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">O conteúdo deve ter aderência clara à área de atuação e ao plano de carreira.</div>
+        </div>
+      </li>
+      <li>
+        <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+        <div>
+          <strong>Alinhamento prévio com liderança direta</strong>
+          <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">A candidatura nasce de uma conversa real entre você e seu gestor — não de um formulário isolado.</div>
+        </div>
+      </li>
+      <li>
+        <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+        <div>
+          <strong>Posicionamento 9-box: Pleno ou superior</strong>
+          <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">Avaliações de performance e potencial são consideradas no processo.</div>
+        </div>
+      </li>
+      <li>
+        <span class="elig-dot"><svg viewBox="0 0 10 10"><polyline points="2,5 4,7 8,3"/></svg></span>
+        <div>
+          <strong>Mínimo de 1 ciclo de AVD na Yandeh</strong>
+          <div style="font-size:12.5px;color:var(--gray-text);margin-top:3px;">É necessário ter passado por pelo menos uma avaliação de desempenho completa.</div>
+        </div>
+      </li>
+    </ul>
 
     <div class="approval-card">
       <span class="approval-pill">Aprovação</span>
